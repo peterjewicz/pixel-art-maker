@@ -1,7 +1,9 @@
+//TODO move canvas/ctx to init
 export default class {
 
     constructor() {
       this.fillColor = "black";
+      this.erase = false;
     }
 
     init() {
@@ -25,6 +27,11 @@ export default class {
         this.handleDrag();
       });
 
+      var eraseHandler = document.getElementById("erase");
+      eraseHandler.addEventListener("click", () => {
+        this.toggleErase();
+      })
+
       //set event listeners on the color switchers
       var classname = document.getElementsByClassName("color-switcher");
       for (var i = 0; i < classname.length; i++) {
@@ -43,7 +50,10 @@ export default class {
 
       x = x - (x % 20);
       y = y - (y % 20);
-      ctx.fillRect(x,y,20,20);
+
+      if(this.erase === false) {
+        ctx.fillRect(x,y,20,20);
+      }
     }
 
 
@@ -65,16 +75,23 @@ export default class {
 
         x = x - (x % 20);
         y = y - (y % 20);
-
-        ctx.fillStyle = this.fillColor;
-        ctx.fillRect(x,y,20,20);
+        if(this.erase === false) {
+          ctx.fillStyle = this.fillColor;
+          ctx.fillRect(x,y,20,20);
+        } else{
+          ctx.clearRect(x, y, 20, 20);
+        }
       }
     }
 
+    toggleErase() {
+      this.erase = true;
+    }
 
     switcherColor(Stage, elem) {
       var color = elem.dataset.color;
       this.fillColor = color;
+      this.erase = false;
     }
 
 }
