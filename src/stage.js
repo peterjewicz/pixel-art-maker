@@ -1,29 +1,47 @@
-//TODO move canvas/ctx to init
+/**
+* Main Stage Class
+* Handles setting up and interaction with the Canvas elemet
+*/
 export default class {
 
     constructor() {
       this.fillColor = "black";
       this.erase = false;
+
+      //The reference to the canvas element and context of it
+      //required for all drawing functionality so we'll define it here once
+      this.canvas;
+      this.ctx;
     }
 
+    /**
+    * Initializes the stage by creating it and binding events
+    * @return void
+    */
     init() {
-      var canvas = document.getElementById("canvas");
-      var ctx = canvas.getContext("2d");
+      this.canvas = document.getElementById("canvas");
+      this.ctx = canvas.getContext("2d");
       for(var x = 0; x < 600; x = x + 20) {
         for(var y = 0; y < 400; y = y + 20) {
-          ctx.rect(x,y,20,20);
-          ctx.stroke();
+          this.ctx.rect(x,y,20,20);
+          this.ctx.stroke();
         }
       }
-
       this.bindEvents();
     }
 
+
+    /**
+    * Binds event handlers to the canvas - Should pass reference of current 'this' to function
+    * @return void
+    */
     bindEvents() {
-      canvas.addEventListener("click", this.handleClick);
-      canvas.addEventListener("mousedown", this.handleMouseDown);
-      canvas.addEventListener("mouseup", this.handleMouseUp);
-      canvas.addEventListener("mousemove", () => {
+      this.canvas.addEventListener("click", () => {
+        this.handleClick();
+      });
+      this.canvas.addEventListener("mousedown", this.handleMouseDown);
+      this.canvas.addEventListener("mouseup", this.handleMouseUp);
+      this.canvas.addEventListener("mousemove", () => {
         this.handleDrag();
       });
 
@@ -41,10 +59,14 @@ export default class {
       }
     }
 
+
+    /**
+    * Handles a single click on the Canvas
+    * Note: this also fires at the end of the drag event
+    * @return void
+    */
     handleClick() {
-      var canvas = document.getElementById("canvas");
-      var ctx = canvas.getContext("2d");
-      var rect = canvas.getBoundingClientRect();
+      var rect = this.canvas.getBoundingClientRect();
       var x = event.clientX - rect.left;
       var y = event.clientY - rect.top;
 
@@ -52,42 +74,64 @@ export default class {
       y = y - (y % 20);
 
       if(this.erase === false) {
-        ctx.fillRect(x,y,20,20);
+        this.ctx.fillRect(x,y,20,20);
       }
     }
 
 
+    /**
+    * Toggles the mouse down state on the current stage class
+    * @return void
+    */
     handleMouseDown() {
       window.mouseDown = true;
     }
 
+    /**
+    * Toggles the mouseup state on the current stage class
+    * @return void
+    */
     handleMouseUp() {
       window.mouseDown = false;
     }
 
+
+    /**
+    * Handles dragging and coloring across the Canvas
+    * @return void
+    */
     handleDrag() {
       if(window.mouseDown) {
-        var canvas = document.getElementById("canvas");
-        var ctx = canvas.getContext("2d");
-        var rect = canvas.getBoundingClientRect();
+
+        var rect = this.canvas.getBoundingClientRect();
         var x = event.clientX - rect.left;
         var y = event.clientY - rect.top;
 
         x = x - (x % 20);
         y = y - (y % 20);
         if(this.erase === false) {
-          ctx.fillStyle = this.fillColor;
-          ctx.fillRect(x,y,20,20);
+          this.ctx.fillStyle = this.fillColor;
+          this.ctx.fillRect(x,y,20,20);
         } else{
-          ctx.clearRect(x, y, 20, 20);
+          this.ctx.clearRect(x, y, 20, 20);
         }
       }
     }
 
+
+    /**
+    * Toggles the erase state ON
+    * @return void
+    */
     toggleErase() {
       this.erase = true;
     }
 
+
+    /**
+    * Switches the currently selected color
+    * @return void
+    */
     switcherColor(Stage, elem) {
       var color = elem.dataset.color;
       this.fillColor = color;
