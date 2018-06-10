@@ -16,6 +16,7 @@ export default class {
 
     /**
     * Initializes the stage by creating it and binding events
+    * TODO make sizing dynamic
     * @return void
     */
     init() {
@@ -81,6 +82,7 @@ export default class {
 
     /**
     * Toggles the mouse down state on the current stage class
+    * TODO define mousedown on the stage object
     * @return void
     */
     handleMouseDown() {
@@ -89,6 +91,7 @@ export default class {
 
     /**
     * Toggles the mouseup state on the current stage class
+    * TODO define mouseup on the stage object
     * @return void
     */
     handleMouseUp() {
@@ -130,6 +133,7 @@ export default class {
 
     /**
     * Switches the currently selected color
+    * TODO remove this
     * @return void
     */
     switcherColor(Stage, elem) {
@@ -137,5 +141,15 @@ export default class {
       this.fillColor = color;
       this.erase = false;
     }
+
+    /**
+    * Takes a color and sets the fill color as it
+    * @param string color
+    * @return void
+    */
+    setColor(color) {
+      this.fillColor = color;
+    }
+
 
 }
