@@ -20,10 +20,25 @@ export default class {
     * @return void
     */
     init() {
+    //   setTimeout(function(){
+    //     const wrapper = document.getElementById("canvas-wrapper");
+    //     console.log(wrapper.clientHeight);
+    // }, 3000);
+    //
+    //   return;
+      const wrapper = document.getElementById("canvas-wrapper");
+
       this.canvas = document.getElementById("canvas");
+      this.canvas.style.width = wrapper.clientWidth;
+      this.canvas.style.height = wrapper.clientHeight;
+      this.canvas.width = wrapper.clientWidth;
+      this.canvas.height = wrapper.clientHeight;
+
       this.ctx = canvas.getContext("2d");
-      for(var x = 0; x < 600; x = x + 20) {
-        for(var y = 0; y < 400; y = y + 20) {
+
+      //TODO remove /2 - added as the full size takes a few seconds to render
+      for(var x = 0; x < this.canvas.width / 2; x = x + 20) {
+        for(var y = 0; y < this.canvas.height / 2 ; y = y + 20) {
           this.ctx.rect(x,y,20,20);
           this.ctx.stroke();
         }
@@ -50,14 +65,6 @@ export default class {
       eraseHandler.addEventListener("click", () => {
         this.toggleErase();
       })
-
-      //set event listeners on the color switchers
-      // var classname = document.getElementsByClassName("color-switcher");
-      // for (var i = 0; i < classname.length; i++) {
-      //     classname[i].addEventListener('click',(event) => {
-      //       this.switcherColor(this, event.srcElement)
-      //     });
-      // }
     }
 
 
@@ -129,18 +136,6 @@ export default class {
     toggleErase() {
       this.erase = true;
     }
-
-
-    /**
-    * Switches the currently selected color
-    * TODO remove this
-    * @return void
-    */
-    // switcherColor(Stage, elem) {
-    //   var color = elem.dataset.color;
-    //   this.fillColor = color;
-    //   this.erase = false;
-    // }
 
     /**
     * Takes a color and sets the fill color as it

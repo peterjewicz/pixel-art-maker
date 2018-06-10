@@ -5,8 +5,14 @@
   </head>
   <body>
     <!-- <div id="colorpicker"></div> -->
-    <p id="erase">Erase</p>
-    <canvas id="canvas" width="600px" height="400px" />
+    <div class="stage-wrapper">
+      <div id="canvas-wrapper" class="canvas-wrapper">
+        <canvas id="canvas" />
+      </div>
+      <div class="options-wrapper">
+        <p id="erase">Erase</p>
+      </div>
+    </div>
   </body>
   <script type="text/javascript" src="colorpicker.js"></script>
   <script src="built/js/application.js"></script>

@@ -1,0 +1,24 @@
+html, body, .stage-wrapper {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+}
+.stage-wrapper{
+  display: flex;
+}
+.options-wrapper{
+  width: 50px;
+  height: 100%;
+  background: black;
+}
+.canvas-wrapper{
+  width: calc(100% - 50px);
+  height: 100%;
+
+  canvas{
+    // width: 100%;
+    // height: 100%;
+  }
+}

@@ -1,15 +1,18 @@
 'use strict';
-
-//Inialize the Application here
 import StageInit from './stage';
 
-// const colorpicker = window.AColorPicker.createPicker({
-// 	attachTo: '#colorpicker',
-// 	color: 'black'
-// });
-let Stage = new StageInit;
-Stage.init();
+  //Inialize the Application here
 
+  // const colorpicker = window.AColorPicker.createPicker({
+  // 	attachTo: '#colorpicker',
+  // 	color: 'black'
+  // });
+
+//delay for domload so clientHeight returns correct value on canvas
+setTimeout(function(){
+    let Stage = new StageInit;
+    Stage.init();
+}, 100);
   // colorpicker.onchange = (picker) => {
   //   Stage.setColor(picker.color);
   // };
