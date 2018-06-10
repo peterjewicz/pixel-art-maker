@@ -52,12 +52,12 @@ export default class {
       })
 
       //set event listeners on the color switchers
-      var classname = document.getElementsByClassName("color-switcher");
-      for (var i = 0; i < classname.length; i++) {
-          classname[i].addEventListener('click',(event) => {
-            this.switcherColor(this, event.srcElement)
-          });
-      }
+      // var classname = document.getElementsByClassName("color-switcher");
+      // for (var i = 0; i < classname.length; i++) {
+      //     classname[i].addEventListener('click',(event) => {
+      //       this.switcherColor(this, event.srcElement)
+      //     });
+      // }
     }
 
 
@@ -136,11 +136,11 @@ export default class {
     * TODO remove this
     * @return void
     */
-    switcherColor(Stage, elem) {
-      var color = elem.dataset.color;
-      this.fillColor = color;
-      this.erase = false;
-    }
+    // switcherColor(Stage, elem) {
+    //   var color = elem.dataset.color;
+    //   this.fillColor = color;
+    //   this.erase = false;
+    // }
 
     /**
     * Takes a color and sets the fill color as it
@@ -149,6 +149,7 @@ export default class {
     */
     setColor(color) {
       this.fillColor = color;
+      this.erase = false;
     }
 
 

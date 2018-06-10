@@ -3,7 +3,8 @@ var webpack = require('webpack');
 
 module.exports = {
   entry:  [
-    path.resolve(__dirname, '../src/application.js') // arguments can be seen as being passed to `cd` and chained from left to right; see https://nodejs.org/api/path.html#path_path_resolve_from_to
+    path.resolve(__dirname, '../src/application.js'), // arguments can be seen as being passed to `cd` and chained from left to right; see https://nodejs.org/api/path.html#path_path_resolve_from_to
+    path.resolve(__dirname, '../src/styles/index.scss')
   ],
   module: {
     loaders: [
@@ -15,6 +16,14 @@ module.exports = {
           cacheDirectory: true,
           presets: ['es2015', 'react']
         }
+      },
+      {
+        test: /\.scss$/,
+            loaders: [
+                "style-loader", // creates style nodes from JS strings
+                "css-loader", // translates CSS into CommonJS
+                "sass-loader" // compiles Sass to CSS
+            ]
       }
     ]
   },
