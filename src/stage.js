@@ -16,16 +16,9 @@ export default class {
 
     /**
     * Initializes the stage by creating it and binding events
-    * TODO make sizing dynamic
     * @return void
     */
     init() {
-    //   setTimeout(function(){
-    //     const wrapper = document.getElementById("canvas-wrapper");
-    //     console.log(wrapper.clientHeight);
-    // }, 3000);
-    //
-    //   return;
       const wrapper = document.getElementById("canvas-wrapper");
 
       this.canvas = document.getElementById("canvas");
@@ -64,7 +57,14 @@ export default class {
       var eraseHandler = document.getElementById("erase");
       eraseHandler.addEventListener("click", () => {
         this.toggleErase();
-      })
+      });
+
+      var pencilTool = document.getElementById("pencilTool");
+      pencilTool.addEventListener("click", () => {
+        this.activatePencil();
+      });
+
+
     }
 
 
@@ -135,6 +135,14 @@ export default class {
     */
     toggleErase() {
       this.erase = true;
+    }
+
+    /**
+    * Toggles on the pencil which toggles off erase
+    * @return void
+    */
+    activatePencil() {
+      this.erase = false;
     }
 
     /**
