@@ -26,7 +26,6 @@ export default class {
     });
 
     this.colorpicker.onchange = (picker) => {
-      console.log('test');
       this.stage.setColor(picker.color);
     };
   }

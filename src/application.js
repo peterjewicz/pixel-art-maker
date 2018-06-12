@@ -1,6 +1,7 @@
 'use strict';
 import StageInit from './stage';
 import ColorPicker from './colorpicker';
+import FileHandler from './fileHandler';
 
   //Inialize the Application here
 
@@ -19,4 +20,5 @@ setTimeout(function(){
     	color: 'black'
     });
     let colorPickerModel = new ColorPicker(colorpicker, Stage);
+    let fileHandler = new FileHandler(Stage);
 }, 100);
