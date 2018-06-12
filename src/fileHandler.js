@@ -20,7 +20,10 @@ export default class {
 
   /**
   * Converts the RGB code to human readable format
-  *
+  * @param string r - red value
+  * @param string g - green value
+  * @param string b - blue value
+  * @return string - hex string representing a color i.e #fffff
   */
   rgbToHex(r, g, b) {
       if (r > 255 || g > 255 || b > 255)
@@ -28,7 +31,11 @@ export default class {
       return ((r << 16) | (g << 8) | b).toString(16);
   }
 
-  //TODO Investigage better color picker converter
+  /**
+  * Saves the current stage state as json encoded array to the file system
+  * @return void - But side effect of a new file
+  * TODO Investigage better color picker converter
+  */
   handleSave() {
     let savedContent = [];
     let columnCount = 0;
