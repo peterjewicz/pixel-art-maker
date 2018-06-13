@@ -8,8 +8,8 @@ import FileHandler from './fileHandler';
 
 
 //delay for domload so clientHeight returns correct value on canvas
+//TODO Find a better way - I hate this
 setTimeout(function(){
-
     //setup the stage
     let Stage = new StageInit;
     Stage.init();
