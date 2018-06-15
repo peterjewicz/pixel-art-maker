@@ -2,6 +2,7 @@
 import StageInit from './stage';
 import ColorPicker from './colorpicker';
 import FileHandler from './fileHandler';
+import SidebarHandler from './sidebarHandler';
 
   //Inialize the Application here
 
@@ -21,4 +22,5 @@ setTimeout(function(){
     });
     let colorPickerModel = new ColorPicker(colorpicker, Stage);
     let fileHandler = new FileHandler(Stage);
+    let sidebar = new SidebarHandler(Stage);
 }, 100);
