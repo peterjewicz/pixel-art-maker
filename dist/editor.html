@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas</title>
+
+    <!-- TODO Make this local to the app for mobile dist -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="colorpicker"></div>
+    <div class="stage-wrapper">
+      <div id="canvas-wrapper" class="canvas-wrapper">
+        <canvas id="canvas" />
+      </div>
+      <div class="options-wrapper">
+        <ul>
+          <li id="erase" class="sidebar-item"><i class="fas fa-eraser"></i></li>
+          <li id="displayPicker" class="sidebar-item"><i class="fas fa-eye-dropper"></i></li>
+          <li id="pencilTool" class="sidebar-item active"><i class="fas fa-pencil-alt"></i></li>
+          <li id="save"><i class="fas fa-save"></i></li>
+          <li id="load">Load</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="colorpicker.js"></script>
+  <script src="built/js/application.js"></script>
+</html>
