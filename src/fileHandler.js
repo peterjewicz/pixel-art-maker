@@ -2,6 +2,8 @@ export default class {
 
   constructor(stage) {
     this.stage = stage;
+    this.nameField;
+    this.localKeys;
     this.init();
   }
 
@@ -11,6 +13,7 @@ export default class {
   * @return void
   */
   init() {
+    this.localKeys = Object.keys(localStorage);
     const saveHandler = document.getElementById("save");
     saveHandler.addEventListener("click", () => {
       this.handleSave();
@@ -20,8 +23,39 @@ export default class {
     loadHandler.addEventListener("click", () => {
       this.handleLoad();
     });
+
+
+    this.nameField = document.getElementById("filename");
+
+    this.handleInitialLoad();
   }
 
+  /**
+  * Handles the initial load from the home screen by examining the query string
+  * If a load value is set it will attempt to load it to the page
+  * @return void
+  */
+  handleInitialLoad() {
+    const localStorageKey = this.getParameterByName('load');
+    console.log(localStorageKey);
+
+    //index of returns -1 on a not found
+    if(this.localKeys.indexOf(localStorageKey != -1) && localStorageKey != null) {
+
+      //handle load call here - need to reformat that function
+    }
+
+  }
+
+  /**
+  * Returns the value for the key passed in for the current urls query string
+  * @param string name
+  * @return string
+  */
+  getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  }
 
   /**
   * Converts the RGB code to human readable format
@@ -41,6 +75,15 @@ export default class {
   * @return void - But side effect of a new file
   */
   handleSave() {
+
+    const name = this.nameField.value;
+
+    if(name.trim() == ''){
+      alert("Name cannot be blank");
+      return;
+    }
+
+
     let savedContent = [];
     let columnCount = 0;
     for(let y = 5; y < this.stage.canvas.height; y = y + 20){
@@ -66,7 +109,10 @@ export default class {
       columnCount++;
     }
     savedContent = JSON.stringify(savedContent);
-    //TODO write to a file
+
+    localStorage.setItem(name, savedContent);
+    //TODO create better alert functionality
+    alert("Image Saved!")
   }
 
 

@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   </head>
   <body>
+    <div id="save-popup-wrapper">
+      <input id="filename" type="text" placeholder="Filename" />
+      <button id="save">Save</button>
+      <p class="danger-text">
+        Warning!!! Localstorage is used to save your art.
+        Localstorage can easily be cleared which means you will loose
+        all of your progress. We highly recommend you save it through the image
+        export feature in addition to saving here.
+      </p>
+    </div>
     <div id="colorpicker"></div>
     <div class="stage-wrapper">
       <div id="canvas-wrapper" class="canvas-wrapper">
@@ -17,7 +27,7 @@
           <li id="erase" class="sidebar-item"><i class="fas fa-eraser"></i></li>
           <li id="displayPicker" class="sidebar-item"><i class="fas fa-eye-dropper"></i></li>
           <li id="pencilTool" class="sidebar-item active"><i class="fas fa-pencil-alt"></i></li>
-          <li id="save"><i class="fas fa-save"></i></li>
+          <li id="saveOpener"><i class="fas fa-save"></i></li>
           <li id="load">Load</li>
         </ul>
       </div>
