@@ -1,5 +1,25 @@
 .home-wrapper {
 
+  button{
+    background: $medPurple;
+    border: 1px solid $lightPurple;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all .5s;
+    font-size: 1.25rem;
+    width: 150px;
+
+    &:hover {
+      background: $darkPurple;
+    }
+
+    &:active {
+      background: $darkPurple;
+    }
+
+  }
+
   background: $darkPurple;
   height: 100vh;
   width: 100%;
@@ -40,6 +60,10 @@
       width: 90%;
       max-width: 600px;
       height: 75%;
+    }
+
+    a {
+      color: white;
     }
 
   }

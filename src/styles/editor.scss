@@ -1,0 +1,13 @@
+#editor {
+
+  #save-popup-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+}

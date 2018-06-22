@@ -9,6 +9,7 @@ import LoadHandler from './loadHandler';
 //delay for domload so clientHeight returns correct value on canvas
 //TODO Find a better way - I hate this
 setTimeout(function(){
+  
   //We only want to execute the stage setup on the editor page itself
   if( window.location.pathname != "/" ) {
 

@@ -15,19 +15,24 @@ export default class {
 
     this.button = document.getElementById("load-button");
     this.button.addEventListener('click',(event) => {
-      this.loaderActive(this.elem)
+      this.handleLoaderToggle()
+    });
+
+    const closeLoader = document.getElementById("close-load-wrapper");
+    closeLoader.addEventListener('click',(event) => {
+      this.handleLoaderToggle()
     });
 
     this.setLocalKeys();
+    this.generateLoadHtml();
+
   }
 
   setLocalKeys() {
     this.localKeys = Object.keys(localStorage);
   }
 
-
-  loaderActive(elem) {
-    elem.className += " active";
+  generateLoadHtml() {
     let outputHtml = "";
 
     for(var x = 0; x < this.localKeys.length; x++) {
@@ -35,7 +40,10 @@ export default class {
     }
 
     this.loadItemsInsert.innerHTML = outputHtml;
+  }
 
+  handleLoaderToggle() {
+    this.elem.classList.toggle('active')
   }
 
 
