@@ -30,7 +30,7 @@ export default class {
       this.ctx = canvas.getContext("2d");
       //TODO remove /2 - added as the full size takes a few seconds to render
       for(var x = 0; x < this.canvas.width / 2; x = x + 20) {
-        for(var y = 0; y < this.canvas.height / 2 ; y = y + 20) {
+        for(var y = 0; y < this.canvas.height / 2; y = y + 20) {
           this.ctx.rect(x,y,20,20);
           this.ctx.stroke();
         }
