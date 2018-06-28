@@ -11,7 +11,7 @@ export default class {
 
   /**
   * Initializes the file handler and binds events
-  * @return void
+  * @return {void}
   */
   init() {
     this.localKeys = Object.keys(localStorage);
@@ -45,7 +45,7 @@ export default class {
   /**
   * Handles the initial load from the home screen by examining the query string
   * If a load value is set it will attempt to load it to the page
-  * @return void
+  * @return {void}
   */
   handleInitialLoad() {
     const localStorageKey = this.getParameterByName('load');
@@ -59,7 +59,7 @@ export default class {
 
   /**
   * Handles the hide and show of the save box
-  * @return void
+  * @return {void}
   */
   handleShowSaveBox() {
     this.saveWrapper.classList.toggle('active')
@@ -67,8 +67,8 @@ export default class {
 
   /**
   * Returns the value for the key passed in for the current urls query string
-  * @param string name
-  * @return string
+  * @param {string} name
+  * @return {string}
   */
   getParameterByName(name) {
     var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
@@ -77,10 +77,10 @@ export default class {
 
   /**
   * Converts the RGB code to human readable format
-  * @param string r - red value
-  * @param string g - green value
-  * @param string b - blue value
-  * @return string - hex string representing a color i.e #fffff
+  * @param {string} r - red value
+  * @param {string} g - green value
+  * @param {string} b - blue value
+  * @return {string} - hex string representing a color i.e #fffff
   */
   rgbToHex(r, g, b) {
       if (r > 255 || g > 255 || b > 255)
@@ -90,7 +90,7 @@ export default class {
 
   /**
   * Saves the current stage state as json encoded array to the file system
-  * @return void - But side effect of a new file
+  * @return {void} - But side effect of a new file
   */
   handleSave() {
 
@@ -130,15 +130,16 @@ export default class {
 
     localStorage.setItem(name, savedContent);
     //TODO create better alert functionality
-    alert("Image Saved!")
+    alert("Image Saved!");
+    this.saveWrapper.classList.toggle('active')
   }
 
 
   /**
   * Loads a json encoded string, parses it, and then outputs it to the screen
-  * @param jsonstring a json encoded string that contains the paiting data
-  * This must be JSON or the attempt to parse it will fial
-  * @return void
+  * @param {jsonstring} a json encoded string that contains the paiting data
+  * NOTE: his must be JSON or the attempt to parse it will fial
+  * @return {void}
   */
   handleLoad(loadContent) {
 

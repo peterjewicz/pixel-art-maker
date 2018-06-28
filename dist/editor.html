@@ -6,6 +6,10 @@
     <!-- TODO Make this local to the app for mobile dist -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   </head>
+  <div id="loading-wrapper">
+    <h1><i class="fas fa-spinner"></i></h1>
+    <h1>Loading...</h1>
+  </div>
   <body id="editor">
     <div id="save-popup-wrapper">
       <div class="save-pop-up-wrapper-inner">
@@ -32,6 +36,7 @@
           <li id="pencilTool" class="sidebar-item active"><i class="fas fa-pencil-alt"></i></li>
           <li id="saveOpener"><i class="fas fa-save"></i></li>
           <li id="load">Load</li>
+          <li><a id="handleDownload" download="YourFileName.jpg">Download as image</a></li>
         </ul>
       </div>
     </div>

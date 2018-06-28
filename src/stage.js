@@ -16,7 +16,7 @@ export default class {
 
     /**
     * Initializes the stage by creating it and binding events
-    * @return void
+    * @return {void}
     */
     init() {
       const wrapper = document.getElementById("canvas-wrapper");
@@ -28,49 +28,80 @@ export default class {
       this.canvas.height = wrapper.clientHeight;
 
       this.ctx = canvas.getContext("2d");
-      //TODO remove /2 - added as the full size takes a few seconds to render
-      for(var x = 0; x < this.canvas.width / 2; x = x + 20) {
-        for(var y = 0; y < this.canvas.height / 2; y = y + 20) {
-          this.ctx.rect(x,y,20,20);
-          this.ctx.stroke();
+
+      let promise = new Promise((resolve, reject) => {
+        for(var x = 0; x < this.canvas.width / 2  ; x = x + 20) {
+          for(var y = 0; y < this.canvas.height / 2 ; y = y + 20) {
+            this.ctx.rect(x,y,20,20);
+            this.ctx.stroke();
+          }
         }
-      }
-      this.bindEvents();
+        this.bindEvents();
+        return resolve();
+      });
+
+      // Removes the loading screen on successful canvas render
+      promise.then(result => {
+        let loadWrapper = document.getElementById("loading-wrapper");
+        loadWrapper.classList.toggle('removed')
+      })
     }
 
 
     /**
     * Binds event handlers to the canvas - Should pass reference of current 'this' to function
-    * @return void
+    * @return {void}
     */
     bindEvents() {
+
       this.canvas.addEventListener("click", () => {
         this.handleClick();
       });
+
+      //Mouse events
+      //TODO change these to touch for mobile devices
       this.canvas.addEventListener("mousedown", this.handleMouseDown);
       this.canvas.addEventListener("mouseup", this.handleMouseUp);
       this.canvas.addEventListener("mousemove", () => {
         this.handleDrag();
       });
 
-      var eraseHandler = document.getElementById("erase");
+
+      //TOOL HANDLERS THAT ARE STAGE SPECIFIC GO HERE
+      let eraseHandler = document.getElementById("erase");
       eraseHandler.addEventListener("click", () => {
         this.toggleErase();
       });
-
-      var pencilTool = document.getElementById("pencilTool");
+      let pencilTool = document.getElementById("pencilTool");
       pencilTool.addEventListener("click", () => {
         this.activatePencil();
       });
 
 
+      handleDownload.addEventListener("click", () => {
+        this.downloadImage();
+      });
+
     }
+
+
+    /**
+    * Handles creating and downloading an image to the users computer
+    * @return {void}
+    */
+    downloadImage() {
+      //this converts it to a data uri
+      let image = this.canvas.toDataURL('image/jpeg');
+      let prev = window.location.href;
+      window.location.href = image.replace("image/jpeg", "image/octet-stream");
+      // window.location.href = prev;
+    };
 
 
     /**
     * Handles a single click on the Canvas
     * Note: this also fires at the end of the drag event
-    * @return void
+    * @return {void}
     */
     handleClick() {
       var rect = this.canvas.getBoundingClientRect();
@@ -89,7 +120,7 @@ export default class {
     /**
     * Toggles the mouse down state on the current stage class
     * TODO define mousedown on the stage object
-    * @return void
+    * @return {void}
     */
     handleMouseDown() {
       window.mouseDown = true;
@@ -98,7 +129,7 @@ export default class {
     /**
     * Toggles the mouseup state on the current stage class
     * TODO define mouseup on the stage object
-    * @return void
+    * @return {void}
     */
     handleMouseUp() {
       window.mouseDown = false;
@@ -107,7 +138,7 @@ export default class {
 
     /**
     * Handles dragging and coloring across the Canvas
-    * @return void
+    * @return {void}
     */
     handleDrag() {
       if(window.mouseDown) {
@@ -130,7 +161,7 @@ export default class {
 
     /**
     * Toggles the erase state ON
-    * @return void
+    * @return {void}
     */
     toggleErase() {
       this.erase = true;
@@ -138,7 +169,7 @@ export default class {
 
     /**
     * Toggles on the pencil which toggles off erase
-    * @return void
+    * @return {void}
     */
     activatePencil() {
       this.erase = false;
@@ -146,8 +177,8 @@ export default class {
 
     /**
     * Takes a color and sets the fill color as it
-    * @param string color
-    * @return void
+    * @param {string} color
+    * @return {void}
     */
     setColor(color) {
       this.fillColor = color;
