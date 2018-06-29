@@ -2,9 +2,9 @@ export default class {
 
   /**
   * Colorpicker functionality wrapper
-  * @param Colorpicker object that has plugin functionality
-  * @param Stage stage - reference to current stage
-  * @return void
+  * @param {Colorpicker} object that has plugin functionality
+  * @param {Stage} stage - reference to current stage
+  * @return {void}
   */
   constructor(colorpicker, stage) {
     this.isActive = false;
@@ -16,7 +16,7 @@ export default class {
 
   /**
   * Initializes the colorpicker by creating it and binding events
-  * @return void
+  * @return {void}
   */
   init() {
     this.elem = document.getElementById("colorpicker");
@@ -32,7 +32,7 @@ export default class {
 
   /**
   * Toggle the display of the color picker
-  * @return void
+  * @return {void}
   */
   toggleActive() {
     this.elem.classList.toggle('active');

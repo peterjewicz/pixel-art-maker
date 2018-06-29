@@ -9,6 +9,11 @@ export default class {
       this.init();
   }
 
+
+  /**
+  * Initializes by creating it and binding events
+  * @return {void}
+  */
   init() {
     this.elem = document.getElementById("loader");
     this.loadItemsInsert = document.getElementById("loaded-items-insert");
@@ -28,10 +33,19 @@ export default class {
 
   }
 
+  /**
+  * Gets the keys of the localstorage objects and binds them to the object
+  * @return {void}
+  */
   setLocalKeys() {
     this.localKeys = Object.keys(localStorage);
   }
 
+
+  /**
+  * Generates HTML to allow the loading of saved images
+  * @return {void}
+  */
   generateLoadHtml() {
     let outputHtml = "";
 
@@ -42,6 +56,11 @@ export default class {
     this.loadItemsInsert.innerHTML = outputHtml;
   }
 
+
+  /**
+  * Handles display of the load overlay
+  * @return {void}
+  */
   handleLoaderToggle() {
     this.elem.classList.toggle('active')
   }

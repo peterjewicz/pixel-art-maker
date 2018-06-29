@@ -6,6 +6,10 @@ export default class {
     this.init();
   }
 
+  /**
+  * Initilzies and binds events
+  * @return {void}
+  */
   init() {
     let classname = document.getElementsByClassName("sidebar-item");
         for (let i = 0; i < classname.length; i++) {
@@ -15,7 +19,11 @@ export default class {
        }
   }
 
-
+  /**
+  * Sets the active class on sidebar items
+  * @param {String} elem that was clicked
+  * @return {void}
+  */
   switchActiveSidebar(elem) {
 
     let promise = new Promise(function(resolve, reject) {
