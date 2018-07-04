@@ -149,6 +149,7 @@ export default class {
       for(let x = 0; x < loadContent[y].length; x++) {
         this.stage.ctx.fillStyle = loadContent[y][x];
         this.stage.ctx.fillRect(x * 20,y * 20,20,20);
+        this.stage.bgctx.stroke();
       }
     }
   }

@@ -12,6 +12,9 @@ export default class {
       //required for all drawing functionality so we'll define it here once
       this.canvas;
       this.ctx;
+
+      this.backgroundCanvas;
+      this.bgctx;
     }
 
     /**
@@ -21,19 +24,30 @@ export default class {
     init() {
       const wrapper = document.getElementById("canvas-wrapper");
 
+      //setup the background Canvas
+      this.backgroundCanvas = document.getElementById("background-canvas");
+      this.backgroundCanvas.style.width = wrapper.clientWidth;
+      this.backgroundCanvas.style.height = wrapper.clientHeight;
+      this.backgroundCanvas.width = wrapper.clientWidth;
+      this.backgroundCanvas.height = wrapper.clientHeight;
+
+
       this.canvas = document.getElementById("canvas");
       this.canvas.style.width = wrapper.clientWidth;
       this.canvas.style.height = wrapper.clientHeight;
       this.canvas.width = wrapper.clientWidth;
       this.canvas.height = wrapper.clientHeight;
 
+
+
       this.ctx = canvas.getContext("2d");
+      this.bgctx = this.backgroundCanvas.getContext("2d");
 
       let promise = new Promise((resolve, reject) => {
-        for(var x = 0; x < this.canvas.width / 2  ; x = x + 20) {
-          for(var y = 0; y < this.canvas.height / 2 ; y = y + 20) {
-            this.ctx.rect(x,y,20,20);
-            this.ctx.stroke();
+        for(var x = 0; x < this.canvas.width / 2; x = x + 20) {
+          for(var y = 0; y < this.canvas.height / 2; y = y + 20) {
+            this.bgctx.rect(x,y,20,20);
+            this.bgctx.stroke();
           }
         }
         this.bindEvents();
@@ -60,9 +74,9 @@ export default class {
 
       //Mouse events
       //TODO change these to touch for mobile devices
-      this.canvas.addEventListener("mousedown", this.handleMouseDown);
-      this.canvas.addEventListener("mouseup", this.handleMouseUp);
-      this.canvas.addEventListener("mousemove", () => {
+      this.backgroundCanvas.addEventListener("mousedown", this.handleMouseDown);
+      this.backgroundCanvas.addEventListener("mouseup", this.handleMouseUp);
+      this.backgroundCanvas.addEventListener("mousemove", () => {
         this.handleDrag();
       });
 

@@ -10,6 +10,14 @@ html, body, .stage-wrapper {
 .stage-wrapper{
   display: flex;
 }
+
+#background-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
 .options-wrapper{
   width: 50px;
   height: 100%;
