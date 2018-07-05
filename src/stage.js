@@ -44,10 +44,15 @@ export default class {
       this.bgctx = this.backgroundCanvas.getContext("2d");
 
       let promise = new Promise((resolve, reject) => {
-        for(var x = 0; x < this.canvas.width / 2; x = x + 20) {
-          for(var y = 0; y < this.canvas.height / 2; y = y + 20) {
+        for(var x = 0; x < this.canvas.width; x = x + 20) {
+          for(var y = 0; y < this.canvas.height; y = y + 20) {
             this.bgctx.rect(x,y,20,20);
             this.bgctx.stroke();
+
+            // we need this so a downloaded image isn't all black
+            // we also override the fill style used above so we can paint right away
+            this.ctx.fillStyle = "white";
+            this.ctx.fillRect(x,y,20,20);
           }
         }
         this.bindEvents();
