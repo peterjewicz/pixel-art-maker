@@ -79,9 +79,18 @@ export default class {
 
       //Mouse events
       //TODO change these to touch for mobile devices
+
+      // THESE Work for web based version
       this.backgroundCanvas.addEventListener("mousedown", this.handleMouseDown);
       this.backgroundCanvas.addEventListener("mouseup", this.handleMouseUp);
       this.backgroundCanvas.addEventListener("mousemove", () => {
+        this.handleDrag();
+      });
+
+      // Mobile devices have tocuh events
+      this.backgroundCanvas.addEventListener("touchstart", this.handleMouseDown);
+      this.backgroundCanvas.addEventListener("touchend", this.handleMouseUp);
+      this.backgroundCanvas.addEventListener("touchmove", () => {
         this.handleDrag();
       });
 
@@ -142,6 +151,8 @@ export default class {
     * @return {void}
     */
     handleMouseDown() {
+      event.preventDefault();
+      console.log("Mouse down")
       window.mouseDown = true;
     }
 
@@ -151,6 +162,8 @@ export default class {
     * @return {void}
     */
     handleMouseUp() {
+      event.preventDefault();
+      console.log("Mouse up")
       window.mouseDown = false;
     }
 
@@ -160,14 +173,24 @@ export default class {
     * @return {void}
     */
     handleDrag() {
+      event.preventDefault();
       if(window.mouseDown) {
-
         var rect = this.canvas.getBoundingClientRect();
-        var x = event.clientX - rect.left;
-        var y = event.clientY - rect.top;
+        let x, y;
+
+        // We need to get the position differntly on mobile and web devices
+        if (event.type === "mousemove") {
+          x = event.clientX - rect.left;
+          y = event.clientY - rect.top;
+        } else {
+           x = event.pageX - rect.left;
+           y = event.pageY - rect.top;
+        }
 
         x = x - (x % 20);
         y = y - (y % 20);
+
+
         if(this.erase === false) {
           this.ctx.fillStyle = this.fillColor;
           this.ctx.fillRect(x,y,20,20);
