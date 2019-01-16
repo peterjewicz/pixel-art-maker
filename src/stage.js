@@ -77,9 +77,7 @@ export default class {
         this.handleClick();
       });
 
-      //Mouse events
-      //TODO change these to touch for mobile devices
-
+      // Draw Events
       // THESE Work for web based version
       this.backgroundCanvas.addEventListener("mousedown", this.handleMouseDown);
       this.backgroundCanvas.addEventListener("mouseup", this.handleMouseUp);
@@ -152,7 +150,6 @@ export default class {
     */
     handleMouseDown() {
       event.preventDefault();
-      console.log("Mouse down")
       window.mouseDown = true;
     }
 
@@ -163,7 +160,6 @@ export default class {
     */
     handleMouseUp() {
       event.preventDefault();
-      console.log("Mouse up")
       window.mouseDown = false;
     }
 
@@ -178,7 +174,7 @@ export default class {
         var rect = this.canvas.getBoundingClientRect();
         let x, y;
 
-        // We need to get the position differntly on mobile and web devices
+        // We need to get the position differently on mobile and web devices
         if (event.type === "mousemove") {
           x = event.clientX - rect.left;
           y = event.clientY - rect.top;
