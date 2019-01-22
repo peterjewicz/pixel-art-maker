@@ -29,7 +29,7 @@ export default class {
     });
 
     this.setLocalKeys();
-    this.generateLoadHtml();
+    // this.generateLoadHtml();
 
   }
 
@@ -38,19 +38,25 @@ export default class {
   * @return {void}
   */
   setLocalKeys() {
-    this.localKeys = Object.keys(localStorage);
+    // this.localKeys = Object.keys(localStorage);
+    // console.log(localforage.keys());
+    this.localKeys = localforage.keys().then((keys) => {
+      this.generateLoadHtml(keys)
+    }).catch(function (err) {
+      console.log('Error Getting Keys')
+    });
   }
 
 
   /**
   * Generates HTML to allow the loading of saved images
+  * @param {array} keys
   * @return {void}
   */
-  generateLoadHtml() {
+  generateLoadHtml(keys) {
     let outputHtml = "";
-
-    for(var x = 0; x < this.localKeys.length; x++) {
-      outputHtml += "<div><h2><a href='editor.html?load="+this.localKeys[x]+"'>"+this.localKeys[x]+"</a></h2></div>";
+    for(var x = 0; x < keys.length; x++) {
+      outputHtml += "<div><h2><a href='editor.html?load="+keys[x]+"'>"+keys[x]+"</a></h2></div>";
     }
 
     this.loadItemsInsert.innerHTML = outputHtml;

@@ -51,9 +51,23 @@ export default class {
     const localStorageKey = this.getParameterByName('load');
 
     //index of returns -1 on a not found
-    if(this.localKeys.indexOf(localStorageKey != -1) && localStorageKey != null) {
-      this.handleLoad(localStorage.getItem(localStorageKey));
-    }
+
+    this.localKeys = localforage.keys().then((keys) => {
+      if(keys.indexOf(localStorageKey != -1) && localStorageKey != null) {
+        this.localKeys = localforage.getItem(localStorageKey).then((value) => {
+          this.handleLoad(value);
+        }).catch(function (err) {
+          console.log('Error Loading JSON');
+        });
+      }
+    }).catch(function (err) {
+      console.log('Error Getting Keys');
+    });
+
+
+    // if(this.localKeys.indexOf(localStorageKey != -1) && localStorageKey != null) {
+    //   // this.handleLoad(localStorage.getItem(localStorageKey));
+    // }
 
   }
 
@@ -128,7 +142,8 @@ export default class {
     }
     savedContent = JSON.stringify(savedContent);
 
-    localStorage.setItem(name, savedContent);
+    // localStorage.setItem(name, savedContent);
+    window.localforage.setItem(name, savedContent);
     //TODO create better alert functionality
     alert("Image Saved!");
     this.saveWrapper.classList.toggle('active')
@@ -142,9 +157,7 @@ export default class {
   * @return {void}
   */
   handleLoad(loadContent) {
-
     loadContent = JSON.parse(loadContent);
-
     for(let y = 0; y < loadContent.length; y++) {
       for(let x = 0; x < loadContent[y].length; x++) {
         this.stage.ctx.fillStyle = loadContent[y][x];
