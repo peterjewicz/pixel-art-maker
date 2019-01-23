@@ -112,42 +112,44 @@ export default class {
 
 
     /**
-    * Handles creating and downloading an image to the users computer
+    * Handles creating and downloading an image to the users computer or device
     * @return {void}
     */
     downloadImage() {
-
-      // TODO wrap this whole thing in a tryCatch where the try is cordova code, and on error it falls
-      // back to just downloading the imageData
-
-      //this converts it to a data uri
-      // let image = this.canvas.toDataURL('image/jpeg');
-      // let prev = window.location.href;
-      // window.location.href = image.replace("image/jpeg", "image/octet-stream");
-
-      // This display the image on screen.
+      // This display the image on screen. Kept here in case we need it later
       // window.location = this.canvas.toDataURL("image/png");
 
-      // This uses canvas2image cordova plugin to save the Image
+      // Attempts to call the cordova specific code to save the image to device, and if that fails
+      // downloads it like normal. Works for both mobile devices as well as browser
+      try {
+        // This uses canvas2image cordova plugin to save the Image
+        //Callbacks for image saving
+        let success = function(msg){
+            alert(msg);
+        };
 
-      //Callbacks for image saving
-      let success = function(msg){
-          alert(msg);
-      };
+        let error = function(err){
+            alert(err);
+        };
 
-      let error = function(err){
-          alert(err);
-      };
-
-      let imageDataUrl = this.canvas.toDataURL('image/jpeg', 1.0);
-      let imageData = imageDataUrl.replace(/data:image\/jpeg;base64,/, '');
-      cordova.exec(
-        success,
-        error,
-        'Canvas2ImagePlugin',
-        'saveImageDataToLibrary',
-        [imageData]
-      );
+        let imageDataUrl = this.canvas.toDataURL('image/jpeg', 1.0);
+        let imageData = imageDataUrl.replace(/data:image\/jpeg;base64,/, '');
+        cordova.exec(
+          success,
+          error,
+          'Canvas2ImagePlugin',
+          'saveImageDataToLibrary',
+          [imageData]
+        );
+      } catch (error) {
+        // Webcode here
+        //this converts it to a data uri
+        // TODO this saves the image as unknown without and extension which is annoying
+        // We need to find a way to change the name of it so it opens easier
+        let image = this.canvas.toDataURL('image/jpeg');
+        let prev = window.location.href;
+        window.location.href = image.replace("image/jpeg", "image/octet-stream");
+      }
     };
 
 
