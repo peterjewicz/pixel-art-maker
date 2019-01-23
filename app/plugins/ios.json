@@ -9,6 +9,15 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.totalwebconnections.pixelartmaker"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.totalwebconnections.pixelartmaker"
+    },
+    "cordova-plugin-sqlite-2": {
+      "PACKAGE_NAME": "com.totalwebconnections.pixelartmaker"
+    },
+    "org.devgeeks.Canvas2ImagePlugin": {
+      "PACKAGE_NAME": "com.totalwebconnections.pixelartmaker"
     }
   },
   "dependent_plugins": {}

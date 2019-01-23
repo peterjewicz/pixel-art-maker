@@ -34,6 +34,7 @@
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
-    "localforage": "^1.7.3"
+    "localforage": "^1.7.3",
+    "localforage-cordovasqlitedriver": "^1.7.0"
   }
 }

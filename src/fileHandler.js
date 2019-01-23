@@ -153,7 +153,7 @@ export default class {
   /**
   * Loads a json encoded string, parses it, and then outputs it to the screen
   * @param {jsonstring} a json encoded string that contains the paiting data
-  * NOTE: his must be JSON or the attempt to parse it will fial
+  * NOTE: this must be JSON or the attempt to parse it will fail
   * @return {void}
   */
   handleLoad(loadContent) {
