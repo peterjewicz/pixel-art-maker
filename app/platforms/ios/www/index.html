@@ -17,8 +17,8 @@
         </div>
       </div>
       <div class="text-wrapper">
-        <h1>Sample Text</h1>
-        <h2>Here's some more text</h2>
+        <h1>Pixel Art Maker</h1>
+        <h2>Make a Masterpiece!</h2>
       </div>
       <a href="editor.html"><button>New</button></a>
       <button id="load-button">Load</button>
@@ -28,22 +28,22 @@
   <script src="localforage.min.js"></script>
   <script src="localforage-cordovasqlitedriver.js"></script>
   <script>
-  document.addEventListener("deviceready", onDeviceReady, false);
-  function onDeviceReady() {
-    localforage.defineDriver(window.cordovaSQLiteDriver).then(function() {
-      return localforage.setDriver([
-      	// Try setting cordovaSQLiteDriver if available,
-        window.cordovaSQLiteDriver._driver,
-        // otherwise use one of the default localforage drivers as a fallback.
-        // This should allow you to transparently do your tests in a browser
-        localforage.INDEXEDDB,
-        localforage.WEBSQL,
-        localforage.LOCALSTORAGE
-      ]);
-      }).then(function() {
-        // this should alert "cordovaSQLiteDriver" when in an emulator or a device
-      });
-    }
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+      localforage.defineDriver(window.cordovaSQLiteDriver).then(function() {
+        return localforage.setDriver([
+        	// Try setting cordovaSQLiteDriver if available,
+          window.cordovaSQLiteDriver._driver,
+          // otherwise use one of the default localforage drivers as a fallback.
+          // This should allow you to transparently do your tests in a browser
+          localforage.INDEXEDDB,
+          localforage.WEBSQL,
+          localforage.LOCALSTORAGE
+        ]);
+        }).then(function() {
+          // this should alert "cordovaSQLiteDriver" when in an emulator or a device
+        });
+      }
   </script>
   <script src="built/js/application.js"></script>
 </html>

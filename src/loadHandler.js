@@ -29,8 +29,6 @@ export default class {
     });
 
     this.setLocalKeys();
-    // this.generateLoadHtml();
-
   }
 
   /**
@@ -54,6 +52,7 @@ export default class {
   * @return {void}
   */
   generateLoadHtml(keys) {
+    console.log("HTML generated")
     let outputHtml = "";
     for(var x = 0; x < keys.length; x++) {
       outputHtml += "<div><h2><a href='editor.html?load="+keys[x]+"'>"+keys[x]+"</a></h2></div>";
@@ -68,6 +67,7 @@ export default class {
   * @return {void}
   */
   handleLoaderToggle() {
+    console.log("Load Button Clicked")
     this.elem.classList.toggle('active')
   }
 

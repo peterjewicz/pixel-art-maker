@@ -14,14 +14,15 @@
     <div id="save-popup-wrapper">
       <div class="save-pop-up-wrapper-inner">
         <div id="close-save-wrapper">X</div>
-        <input id="filename" type="text" placeholder="Filename" />
+        <input id="filename" type="text" placeholder="Name" />
         <button id="save">Save</button>
-        <p class="danger-text">
+          <!-- TODO Maybe bring this back for the web based version only. Native devices uses sqllite and won't have this problem -->
+        <!-- <p class="danger-text">
           Warning!!! Localstorage is used to save your art.
           Localstorage can easily be cleared which means you will loose
           all of your progress. We highly recommend you save it through the image
           export feature in addition to saving here.
-        </p>
+        </p> -->
       </div>
     </div>
     <div id="colorpicker"></div>
@@ -45,5 +46,24 @@
   <script src="cordova.js"/></script>
   <script src="localforage.min.js"></script>
   <script type="text/javascript" src="colorpicker.js"></script>
+  <script src="localforage-cordovasqlitedriver.js"></script>
+  <script>
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+      localforage.defineDriver(window.cordovaSQLiteDriver).then(function() {
+        return localforage.setDriver([
+          // Try setting cordovaSQLiteDriver if available,
+          window.cordovaSQLiteDriver._driver,
+          // otherwise use one of the default localforage drivers as a fallback.
+          // This should allow you to transparently do your tests in a browser
+          localforage.INDEXEDDB,
+          localforage.WEBSQL,
+          localforage.LOCALSTORAGE
+        ]);
+        }).then(function() {
+          // this should alert "cordovaSQLiteDriver" when in an emulator or a device
+        });
+      }
+  </script>
   <script src="built/js/application.js"></script>
 </html>
