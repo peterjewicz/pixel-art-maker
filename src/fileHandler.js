@@ -14,7 +14,11 @@ export default class {
   * @return {void}
   */
   init() {
-    this.localKeys = Object.keys(localStorage);
+
+    localforage.keys().then((keys) => {
+      this.localKeys = keys
+    })
+    // this.localKeys = Object.keys(localStorage);
 
     const saveOpener = document.getElementById("saveOpener");
     saveOpener.addEventListener("click", () =>  {
