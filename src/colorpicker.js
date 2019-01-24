@@ -31,6 +31,18 @@ export default class {
   }
 
   /**
+  * Turns the colorpicker off
+  * @return void
+  */
+  setInactive() {
+
+    if(this.isActive) {
+      this.elem.classList.toggle('active');
+      this.isActive = false;
+    }
+  }
+
+  /**
   * Toggle the display of the color picker
   * @return {void}
   */

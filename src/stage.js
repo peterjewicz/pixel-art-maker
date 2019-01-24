@@ -15,6 +15,8 @@ export default class {
 
       this.backgroundCanvas;
       this.bgctx;
+
+      this.colorPicker = null; // Holds a reference to the colorpicker so we can call methods on it
     }
 
     /**
@@ -232,14 +234,16 @@ export default class {
     */
     toggleErase() {
       this.erase = true;
+      this.colorPicker.setInactive();
     }
 
     /**
-    * Toggles on the pencil which toggles off erase
+    * Toggles on the pencil which toggles off erase && colorpicker
     * @return {void}
     */
     activatePencil() {
       this.erase = false;
+      this.colorPicker.setInactive();
     }
 
     /**
@@ -250,6 +254,15 @@ export default class {
     setColor(color) {
       this.fillColor = color;
       this.erase = false;
+    }
+
+    /**
+    * Sets a reference to the color picker
+    * @param {object} colorPicker
+    * @returns {void}
+    */
+    setColorPickerRef(colorPicker) {
+      this.colorPicker = colorPicker;
     }
 
 

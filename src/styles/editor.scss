@@ -18,6 +18,8 @@
     .save-pop-up-wrapper-inner {
       max-width: 620px;
       margin: 0 auto;
+      padding: 0 10px;
+      padding-bottom: 25px; // TODO we can remove this if we bring back the text in editor.html
 
       input {
         width: 50%;
