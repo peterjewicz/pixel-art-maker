@@ -3,12 +3,11 @@ $medPurple: #3c2473;
 $lightPurple: #623179;
 
 
-// TODO we need to bring this in locally
-@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
-@import url('https://fonts.googleapis.com/css?family=Patrick+Hand');
-
+@font-face {
+  font-family: PatrickHand;
+  src: url(../Patrick_Hand/PatrickHand-Regular.ttf);
+}
 
 body {
-  font-family: 'Gloria Hallelujah', cursive;
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'PatrickHand', cursive;
 }

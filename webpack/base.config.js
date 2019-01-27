@@ -24,6 +24,12 @@ module.exports = {
                 "css-loader", // translates CSS into CommonJS
                 "sass-loader" // compiles Sass to CSS
             ]
+      },
+      {
+        test: /\.ttf$/,
+            loaders: [
+                "url-loader"
+            ]
       }
     ]
   },

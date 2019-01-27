@@ -3,8 +3,7 @@
   <head>
     <title>Canvas</title>
 
-    <!-- TODO Make this local to the app for mobile dist -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="fontawesome/css/all.min.css" >
   </head>
   <div id="loading-wrapper">
     <h1><i class="fas fa-spinner"></i></h1>
@@ -50,6 +49,31 @@
   <script>
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {
+      var admobid = {};
+       if( /(android)/i.test(navigator.userAgent) ) { // for android & amazon-fireos
+         admobid = {
+           banner: 'ca-app-pub-xxx/xxx', // or DFP format "/6253334/dfp_example_ad"
+           interstitial: 'ca-app-pub-xxx/yyy'
+         };
+       } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
+         admobid = {
+           banner: 'ca-app-pub-7918336603285970/6241660284', // or DFP format "/6253334/dfp_example_ad"
+           interstitial: 'ca-app-pub-xxx/kkk'
+         };
+       } else { // for windows phone
+         admobid = {
+           banner: 'ca-app-pub-xxx/zzz', // or DFP format "/6253334/dfp_example_ad"
+           interstitial: 'ca-app-pub-xxx/kkk'
+         };
+       }
+
+       if(AdMob) AdMob.createBanner({
+        adId: admobid.banner,
+        position: AdMob.AD_POSITION.BOTTOM_CENTER,
+        autoShow: true });
+
+
+        
       localforage.defineDriver(window.cordovaSQLiteDriver).then(function() {
         return localforage.setDriver([
           // Try setting cordovaSQLiteDriver if available,
